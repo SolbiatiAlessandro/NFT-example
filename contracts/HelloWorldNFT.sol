@@ -1,7 +1,8 @@
-pragma solidity ˆ0.6.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol"
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract HelloWorldNFT is ERC721 {
 	using Counters for Counters.Counter;
@@ -9,7 +10,7 @@ contract HelloWorldNFT is ERC721 {
 	mapping(string => uint8) hashes;
 
 
-	constructor() public ERC721("HelloWorldNFT", "hwNFT");
+	constructor() public ERC721("HelloWorldNFT", "hwNFT") {}
 
 	function awardItem(address recipient, string memory hash, string memory metadata)
 		public
@@ -22,7 +23,7 @@ contract HelloWorldNFT is ERC721 {
 		uint256 newItemId = _tokenIDs.current();
 
 		_mint(recipient, newItemId);
-		_setTokenURI(newItemId, metadata);
+		tokenURI(newItemId);
 
 		return newItemId;
 	}
